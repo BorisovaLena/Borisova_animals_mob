@@ -27,6 +27,7 @@
         android:layout_marginTop="15dp"
         android:layout_marginRight="20dp"
         android:background="@color/btn3"
+        android:onClick="onClickADD"
         android:text="Добавить"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"

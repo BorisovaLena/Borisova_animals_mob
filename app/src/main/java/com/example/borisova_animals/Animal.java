@@ -19,13 +19,13 @@ public class Animal implements Parcelable {
     public Animal(int ID, String title, String kingdom, String type, String clas, String detachment, String family, String image)
     {
         this.ID = ID;
-        this.Title = title;
-        this.Kingdom = kingdom;
-        this.Type = type;
-        this.Class = clas;
-        this.Detachment = detachment;
-        this.Family = family;
-        this.Image = image;
+        Title = title;
+        Kingdom = kingdom;
+        Type = type;
+        Class = clas;
+        Detachment = detachment;
+        Family = family;
+        Image = image;
     }
 
     protected Animal(Parcel in)

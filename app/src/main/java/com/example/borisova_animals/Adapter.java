@@ -1,5 +1,6 @@
 package com.example.borisova_animals;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -14,7 +15,7 @@ import java.util.List;
 
 public class Adapter extends BaseAdapter {
 
-    private Context mContext;
+    private final Context mContext;
     List<Animal> animList;
 
     public Adapter (Context mContext, List<Animal> listAnim)
@@ -54,7 +55,7 @@ public class Adapter extends BaseAdapter {
     @Override
     public View getView(int i, View view, ViewGroup viewGroup)
     {
-        View v = View.inflate(mContext,R.layout.item_layout,null);
+        @SuppressLint("ViewHolder") View v = View.inflate(mContext,R.layout.item_layout,null);
         TextView Title = v.findViewById(R.id.tv_Title);
         TextView Kingdom = v.findViewById(R.id.tv_Kingdom);
         TextView Type = v.findViewById(R.id.tv_Type);

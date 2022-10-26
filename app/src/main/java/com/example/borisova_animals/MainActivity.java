@@ -2,8 +2,10 @@ package com.example.borisova_animals;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ListView;
 
 import org.json.JSONArray;
@@ -19,25 +21,24 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private Adapter pAdapter;
-    private List<Animal> listProduct = new ArrayList<>();
+    private List<Animal> listAnimal = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ListView ivProducts = findViewById(R.id.BD_Animals);
-        pAdapter = new Adapter(MainActivity.this, listProduct);
+        pAdapter = new Adapter(MainActivity.this, listAnimal);
         ivProducts.setAdapter(pAdapter);
         new GetAnim().execute();
     }
-
-    private class GetAnim extends AsyncTask<Void, Void, String>
+    class GetAnim extends AsyncTask<Void, Void, String>
     {
         @Override
         protected String doInBackground(Void... voids) {
             try
             {
-                URL url = new URL("http://10.0.2.2:/api/Animals");
+                URL url = new URL("https://ngknn.ru:5101/NGKNN/БорисоваЕА/api/Animals");
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
                 StringBuilder result = new StringBuilder();
@@ -52,7 +53,6 @@ public class MainActivity extends AppCompatActivity {
                 return null;
             }
         }
-
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
@@ -72,15 +72,16 @@ public class MainActivity extends AppCompatActivity {
                             productJson.getString("Family"),
                             productJson.getString("Image")
                     );
-                    listProduct.add(tempAnimal);
+                    listAnimal.add(tempAnimal);
                     pAdapter.notifyDataSetInvalidated();
                 }
             } catch (Exception ignored) {
-
-
             }
         }
-
     }
-
+    public void onClickADD(View v)
+    {
+        Intent intent = new Intent(this, add_Animal.class);
+        startActivity(intent);
+    }
 }
