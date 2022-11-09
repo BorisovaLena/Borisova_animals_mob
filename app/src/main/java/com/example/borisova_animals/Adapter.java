@@ -2,6 +2,7 @@ package com.example.borisova_animals;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Base64;
@@ -70,7 +71,16 @@ public class Adapter extends BaseAdapter {
         Class.setText(animal.getClas());
         Detachment.setText(animal.getDetachment());
         Family.setText(animal.getFamily());
-        //imageView.setImageBitmap(getUserImage(animal.get()));
+        imageView.setImageBitmap(getUserImage(animal.getImage()));
+
+        v.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(mContext, UpdateDelete.class);
+                intent.putExtra(Animal.class.getSimpleName(), animal);
+                mContext.startActivity(intent);
+            }
+        });
         return v;
     }
 }
