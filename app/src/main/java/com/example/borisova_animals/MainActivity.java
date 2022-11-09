@@ -1,10 +1,13 @@
 package com.example.borisova_animals;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -22,7 +25,10 @@ public class MainActivity extends AppCompatActivity {
 
     private Adapter pAdapter;
     private List<Animal> listAnimal = new ArrayList<>();
+    Spinner spinner;
+    String[] i = {"по возрастанию","по убыванию"};
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,7 +36,15 @@ public class MainActivity extends AppCompatActivity {
         ListView ivProducts = findViewById(R.id.BD_Animals);
         pAdapter = new Adapter(MainActivity.this, listAnimal);
         ivProducts.setAdapter(pAdapter);
+
+        ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, i);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner=findViewById(R.id.spinner);
+        spinner.setAdapter(adapter);
+
         new GetAnim().execute();
+
+
     }
     class GetAnim extends AsyncTask<Void, Void, String>
     {
