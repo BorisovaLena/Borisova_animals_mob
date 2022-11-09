@@ -3,11 +3,9 @@ package com.example.borisova_animals;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import androidx.annotation.NonNull;
-
 public class Animal implements Parcelable {
 
-    private int ID;
+    private Integer ID;
     private String Title;
     private String Kingdom;
     private String Type;
@@ -16,7 +14,7 @@ public class Animal implements Parcelable {
     private String Family;
     private String Image;
 
-    public Animal(int ID, String title, String kingdom, String type, String clas, String detachment, String family, String image)
+    public Animal(Integer ID, String title, String kingdom, String type, String clas, String detachment, String family, String image)
     {
         this.ID = ID;
         Title = title;
@@ -52,7 +50,7 @@ public class Animal implements Parcelable {
         }
     };
 
-    public void setID(int ID) {
+    public void setID(Integer ID) {
         this.ID = ID;
     }
 
@@ -102,7 +100,7 @@ public class Animal implements Parcelable {
         parcel.writeString(Image);
     }
 
-    public int getID() {
+    public Integer getID() {
         return ID;
     }
 
